@@ -48,7 +48,16 @@ INSTALLED_APPS = [
     # third-party apps
     'rest_framework',
     'drf_yasg',
+    'cloudinary',
+
+    # local APPs
+    'account.apps.AccountConfig',
+    'products.apps.ProductsConfig',
+
 ]
+
+# Changed User Model
+AUTH_USER_MODEL = 'account.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -232,3 +241,12 @@ LOGGING = {
     },
 }
 
+
+# Media Files Setup
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': ENV.get('CLOUD_NAME'),
+    'API_KEY': ENV.get('API_KEY'),
+    'API_SECRET': ENV.get('API_SECRET')
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
